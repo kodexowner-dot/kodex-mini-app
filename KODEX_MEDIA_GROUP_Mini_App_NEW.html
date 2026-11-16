@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050509">
+<title>KODEX MEDIA GROUP — Заявка</title>
+<style>
+:root{--pink:#ff00b8;--purple:#7900ff;--blue:#00cfff;--bg:#050509;--card:#11111b;--muted:#9292a8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+.container{width:min(100% - 32px,520px);margin:auto;padding:24px 0 40px}
+header{text-align:center;margin-bottom:24px}
+.logo{width:112px;height:112px;border-radius:50%;object-fit:cover;box-shadow:0 0 28px #7900ff55}
+.brand{font-size:22px;font-weight:900;letter-spacing:1.5px;margin:13px 0 5px}
+.brand span{background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));-webkit-background-clip:text;color:transparent}
+.subtitle{color:var(--muted);font-size:13px}
+.language{display:flex;justify-content:center;gap:8px;margin:18px 0}
+.language button{background:#171522;color:#bbb;border:1px solid #353047;padding:9px 16px;border-radius:20px}
+.language button.active{color:#fff;border-color:var(--blue);background:#172033}
+.card{background:linear-gradient(145deg,#151522,#0c0c13);border:1px solid #29243d;border-radius:22px;padding:22px;box-shadow:0 10px 40px #0008}
+.progress{height:5px;background:#292536;border-radius:10px;overflow:hidden;margin-bottom:22px}
+.progress-bar{height:100%;width:20%;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));transition:width .25s}
+.step-label{color:var(--blue);font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:25px;margin:10px 0}
+.description{color:var(--muted);font-size:14px;line-height:1.5}
+.field{margin-top:19px}
+label{display:block;font-size:13px;margin-bottom:9px;color:#e6e6f0}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid #353047;background:#090911;color:white;outline:none;font-size:15px}
+input:focus,select:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 0 2px #7900ff22}
+textarea{resize:vertical;min-height:105px}
+.hint{color:var(--muted);font-size:11px;margin-top:7px}
+.error{color:#ff6aa9;font-size:12px;margin-top:7px}
+.buttons{display:flex;gap:10px;margin-top:24px}
+button{border:0;border-radius:12px;padding:14px;font-size:14px;font-weight:bold;cursor:pointer}
+.primary{flex:1;color:#fff;background:linear-gradient(100deg,var(--pink),var(--purple),#245bff)}
+.secondary{color:#fff;background:#242131;padding-inline:22px}
+.hidden{display:none!important}
+.service-option{display:block;padding:13px;margin-top:9px;background:#0b0b14;border:1px solid #353047;border-radius:12px;cursor:pointer}
+.service-option:has(input:checked){border-color:var(--blue);background:#101827}
+.service-option input{width:auto;margin-right:9px;accent-color:var(--blue)}
+.phone-row{display:grid;grid-template-columns:135px 1fr;gap:9px}
+.consent{display:flex;gap:9px;align-items:flex-start;line-height:1.4}
+.consent input{width:auto;margin-top:2px}
+footer{text-align:center;color:#666477;font-size:11px;margin-top:22px;line-height:1.7}
+.success{text-align:center;padding:25px 5px}
+.success-icon{font-size:48px;color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <img class="logo" src="logo.jpg" alt="KODEX MEDIA GROUP" onerror="this.style.display='none'">
+  <div class="brand">KODEX <span>MEDIA GROUP</span></div>
+  <div class="subtitle">Advertising • Media • Digital</div>
+  <div class="language">
+    <button type="button" id="ruBtn" class="active">🇷🇺 Русский</button>
+    <button type="button" id="kkBtn">🇰🇿 Қазақша</button>
+  </div>
+</header>
+
+<div class="card" id="formCard">
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+<form id="applicationForm" novalidate>
+<section class="step" data-step="0">
+  <div class="step-label" data-i18n="step1">ШАГ 01 / 05</div>
+  <h1 data-i18n="aboutTitle">Расскажите о себе</h1>
+  <p class="description" data-i18n="aboutDesc">Укажите настоящее имя и фамилию.</p>
+  <div class="field">
+    <label for="name" data-i18n="firstNameLabel">Имя *</label>
+    <input id="name" maxlength="40" autocomplete="given-name" data-placeholder="firstNamePlaceholder" placeholder="Например, Рамазан">
+    <div class="error" id="nameError"></div>
+  </div>
+  <div class="field">
+    <label for="surname" data-i18n="surnameLabel">Фамилия *</label>
+    <input id="surname" maxlength="50" autocomplete="family-name" data-placeholder="surnamePlaceholder" placeholder="Например, Иванов">
+    <div class="hint" data-i18n="surnameHint">Укажите настоящую фамилию.</div>
+    <div class="error" id="surnameError"></div>
+  </div>
+  <div class="field">
+    <label for="project" data-i18n="projectLabel">Компания или проект</label>
+    <input id="project" maxlength="80" data-placeholder="projectPlaceholder" placeholder="Название компании или проекта">
+    <div class="hint" data-i18n="projectHint">Необязательное поле.</div>
+    <div class="error" id="projectError"></div>
+  </div>
+</section>
+
+<section class="step hidden" data-step="1">
+  <div class="step-label" data-i18n="step2">ШАГ 02 / 05</div>
+  <h1 data-i18n="serviceTitle">Выберите услугу</h1>
+  <p class="description" data-i18n="serviceDesc">Что именно вам требуется?</p>
+  <div class="field" id="serviceList">
+    <label class="service-option"><input type="radio" name="service" value="SMM и продвижение"><span data-i18n="svc1">SMM и продвижение</span></label>
+    <label class="service-option"><input type="radio" name="service" value="AI-видео и контент"><span data-i18n="svc2">AI-видео и контент</span></label>
+    <label class="service-option"><input type="radio" name="service" value="Реклама и маркетинг"><span data-i18n="svc3">Реклама и маркетинг</span></label>
+    <label class="service-option"><input type="radio" name="service" value="Разработка AI-бота"><span data-i18n="svc4">Разработка AI-бота</span></label>
+    <label class="service-option"><input type="radio" name="service" value="Маркетинговая стратегия"><span data-i18n="svc5">Маркетинговая стратегия</span></label>
+    <label class="service-option"><input type="radio" name="service" value="Другое"><span data-i18n="svc6">Другая услуга</span></label>
+    <div class="error" id="serviceError"></div>
+  </div>
+  <div class="field">
+    <label for="task" data-i18n="taskLabel">Опишите вашу задачу *</label>
+    <textarea id="task" maxlength="1000" data-placeholder="taskPlaceholder" placeholder="Расскажите, что нужно сделать..."></textarea>
+    <div class="hint" data-i18n="taskHint">Не менее 10 символов.</div>
+    <div class="error" id="taskError"></div>
+  </div>
+</section>
+
+<section class="step hidden" data-step="2">
+  <div class="step-label" data-i18n="step3">ШАГ 03 / 05</div>
+  <h1 data-i18n="deadlineTitle">Желаемый срок</h1>
+  <p class="description" data-i18n="deadlineDesc">Когда вам нужен результат?</p>
+  <div class="field">
+    <label for="deadline" data-i18n="deadlineLabel">Срок выполнения</label>
+    <select id="deadline">
+      <option value="" data-i18n="notSet">Пока не определён</option>
+      <option value="Как можно скорее" data-i18n="asap">Как можно скорее</option>
+      <option value="В течение недели" data-i18n="week">В течение недели</option>
+      <option value="В течение месяца" data-i18n="month">В течение месяца</option>
+      <option value="В течение 2–3 месяцев" data-i18n="months">В течение 2–3 месяцев</option>
+      <option value="Срок не важен" data-i18n="flexible">Срок не важен</option>
+    </select>
+  </div>
+</section>
+
+<section class="step hidden" data-step="3">
+  <div class="step-label" data-i18n="step4">ШАГ 04 / 05</div>
+  <h1 data-i18n="phoneTitle">Контакт для связи</h1>
+  <p class="description" data-i18n="phoneDesc">Выберите страну и укажите номер телефона.</p>
+  <div class="field">
+    <label for="country" data-i18n="countryLabel">Страна номера *</label>
+    <div class="phone-row">
+      <select id="country">
+        <option value="kz">🇰🇿 Казахстан (+7)</option>
+        <option value="ru">🇷🇺 Россия (+7)</option>
+      </select>
+      <input id="contact" type="tel" inputmode="numeric" autocomplete="tel" maxlength="18" placeholder="+7 700 123 45 67">
+    </div>
+    <div class="hint" id="phoneHint">Казахстан: +7 700 123 45 67</div>
+    <div class="error" id="phoneError"></div>
+  </div>
+  <div class="field">
+    <label class="consent"><input type="checkbox" id="consent"><span data-i18n="consent">Я согласен(на) на обработку данных для связи по моей заявке.</span></label>
+    <div class="error" id="consentError"></div>
+  </div>
+</section>
+
+<section class="step hidden" data-step="4">
+  <div class="step-label" data-i18n="step5">ШАГ 05 / 05</div>
+  <h1 data-i18n="reviewTitle">Проверьте заявку</h1>
+  <p class="description" data-i18n="reviewDesc">Убедитесь, что данные указаны правильно, затем отправьте заявку.</p>
+  <div id="review" class="description" style="white-space:pre-line;margin-top:18px"></div>
+</section>
+
+<div class="buttons">
+  <button type="button" class="secondary hidden" id="backBtn" data-i18n="back">Назад</button>
+  <button type="button" class="primary" id="nextBtn" data-i18n="next">Продолжить</button>
+  <button type="submit" class="primary hidden" id="submitBtn" data-i18n="send">Отправить заявку</button>
+</div>
+</form>
+</div>
+
+<div class="card hidden" id="successCard">
+  <div class="success">
+    <div class="success-icon">✓</div>
+    <h1 data-i18n="successTitle">Заявка отправлена!</h1>
+    <p class="description" data-i18n="successDesc">Спасибо за обращение. Наш менеджер свяжется с вами.</p>
+    <button class="primary" onclick="location.reload()" style="width:100%;margin-top:18px" data-i18n="home">На главную</button>
+  </div>
+</div>
+<footer>KODEX MEDIA GROUP © 2026<br>Advertising • Media • Digital</footer>
+</div>
+
+<script>
+const API_URL = "https://kodex-ai-manager-8.onrender.com/submit";
+const translations = {
+ru:{
+step1:"ШАГ 01 / 05",step2:"ШАГ 02 / 05",step3:"ШАГ 03 / 05",step4:"ШАГ 04 / 05",step5:"ШАГ 05 / 05",
+aboutTitle:"Расскажите о себе",aboutDesc:"Укажите настоящее имя или название компании.",firstNameLabel:"Имя *",firstNamePlaceholder:"Например, Рамазан",surnameLabel:"Фамилия *",surnamePlaceholder:"Например, Иванов",surnameHint:"Укажите настоящую фамилию.",
+projectLabel:"Компания или проект",projectPlaceholder:"Название компании или проекта",projectHint:"Необязательно. Если указываете компанию, введите её настоящее название буквами.",
+serviceTitle:"Выберите услугу",serviceDesc:"Что именно вам требуется?",svc1:"SMM и продвижение",svc2:"AI-видео и контент",svc3:"Реклама и маркетинг",svc4:"Разработка AI-бота",svc5:"Маркетинговая стратегия",svc6:"Другая услуга",
+taskLabel:"Опишите вашу задачу *",taskPlaceholder:"Расскажите, что нужно сделать...",taskHint:"Не менее 10 символов.",deadlineTitle:"Желаемый срок",deadlineDesc:"Когда вам нужен результат?",deadlineLabel:"Срок выполнения",notSet:"Пока не определён",asap:"Как можно скорее",week:"В течение недели",month:"В течение месяца",months:"В течение 2–3 месяцев",flexible:"Срок не важен",
+phoneTitle:"Контакт для связи",phoneDesc:"Выберите страну и укажите номер телефона.",countryLabel:"Страна номера *",consent:"Я согласен(на) на обработку данных для связи по моей заявке.",reviewTitle:"Проверьте заявку",reviewDesc:"Убедитесь, что данные указаны правильно, затем отправьте заявку.",back:"Назад",next:"Продолжить",send:"Отправить заявку",successTitle:"Заявка отправлена!",successDesc:"Спасибо за обращение. Наш менеджер свяжется с вами.",home:"На главную",
+nameError:"Введите настоящее имя буквами.",surnameError:"Введите настоящую фамилию буквами.",projectError:"Проверьте название компании: введите настоящее название буквами.",serviceError:"Выберите услугу.",taskError:"Опишите задачу подробнее (минимум 10 символов).",phoneError:"Введите корректный номер выбранной страны.",consentError:"Необходимо согласие на обработку данных.",sending:"Отправляем...",failed:"Не удалось отправить заявку. Попробуйте ещё раз.",phoneHintKz:"Казахстан: +7 700 123 45 67",phoneHintRu:"Россия: +7 999 123 45 67",reviewName:"Имя",reviewProject:"Компания/проект",reviewService:"Услуга",reviewTask:"Задача",reviewDeadline:"Срок",reviewPhone:"Телефон"
+},
+kk:{
+step1:"1-ҚАДАМ / 05",step2:"2-ҚАДАМ / 05",step3:"3-ҚАДАМ / 05",step4:"4-ҚАДАМ / 05",step5:"5-ҚАДАМ / 05",
+aboutTitle:"Өзіңіз туралы айтыңыз",aboutDesc:"Шын атыңызды немесе компания атауын енгізіңіз.",firstNameLabel:"Атыңыз *",firstNamePlaceholder:"Мысалы, Рамазан",surnameLabel:"Тегіңіз *",surnamePlaceholder:"Мысалы, Иванов",surnameHint:"Тегіңізді толық жазыңыз.",
+projectLabel:"Компания немесе жоба",projectPlaceholder:"Компания немесе жоба атауы",projectHint:"Міндетті емес. Компанияны көрсетсеңіз, нақты атауын әріптермен жазыңыз.",
+serviceTitle:"Қызметті таңдаңыз",serviceDesc:"Сізге қандай қызмет қажет?",svc1:"SMM және ілгерілету",svc2:"AI-видео және контент",svc3:"Жарнама және маркетинг",svc4:"AI-бот әзірлеу",svc5:"Маркетинг стратегиясы",svc6:"Басқа қызмет",
+taskLabel:"Тапсырмаңызды сипаттаңыз *",taskPlaceholder:"Не істеу керегін жазыңыз...",taskHint:"Кемінде 10 таңба.",deadlineTitle:"Қажетті мерзім",deadlineDesc:"Нәтиже қашан қажет?",deadlineLabel:"Орындау мерзімі",notSet:"Әзірге белгісіз",asap:"Мүмкіндігінше тез",week:"Бір апта ішінде",month:"Бір ай ішінде",months:"2–3 ай ішінде",flexible:"Мерзімі маңызды емес",
+phoneTitle:"Байланыс ақпараты",phoneDesc:"Елді таңдап, телефон нөмірін енгізіңіз.",countryLabel:"Нөмір елі *",consent:"Өтінім бойынша байланысу үшін деректерімді өңдеуге келісемін.",reviewTitle:"Өтінімді тексеріңіз",reviewDesc:"Ақпараттың дұрыстығын тексеріп, өтінімді жіберіңіз.",back:"Артқа",next:"Жалғастыру",send:"Өтінімді жіберу",successTitle:"Өтінім жіберілді!",successDesc:"Өтініміңізге рақмет. Менеджеріміз сізбен байланысады.",home:"Басты бетке",
+nameError:"Атыңызды әріптермен енгізіңіз.",surnameError:"Тегіңізді әріптермен енгізіңіз.",projectError:"Компанияның нақты атауын әріптермен енгізіңіз.",serviceError:"Қызметті таңдаңыз.",taskError:"Тапсырманы толығырақ сипаттаңыз (кемінде 10 таңба).",phoneError:"Таңдалған елдің дұрыс нөмірін енгізіңіз.",consentError:"Деректерді өңдеуге келісім қажет.",sending:"Жіберілуде...",failed:"Өтінімді жіберу мүмкін болмады. Қайталап көріңіз.",phoneHintKz:"Қазақстан: +7 700 123 45 67",phoneHintRu:"Ресей: +7 999 123 45 67",reviewName:"Аты",reviewProject:"Компания/жоба",reviewService:"Қызмет",reviewTask:"Тапсырма",reviewDeadline:"Мерзімі",reviewPhone:"Телефон"
+}};
+let lang="ru",currentStep=0;
+const $=id=>document.getElementById(id),steps=[...document.querySelectorAll(".step")];
+function t(key){return translations[lang][key]||key}
+function setLanguage(next){
+ lang=next;document.documentElement.lang=lang;
+ $("ruBtn").classList.toggle("active",lang==="ru");$("kkBtn").classList.toggle("active",lang==="kk");
+ document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
+ document.querySelectorAll("[data-placeholder]").forEach(el=>el.placeholder=t(el.dataset.placeholder));
+ updatePhoneHint();clearErrors();
+}
+$("ruBtn").onclick=()=>setLanguage("ru");$("kkBtn").onclick=()=>setLanguage("kk");
+function clearErrors(){document.querySelectorAll(".error").forEach(e=>e.textContent="")}
+function showStep(i){
+ currentStep=i;steps.forEach((s,n)=>s.classList.toggle("hidden",n!==i));
+ $("progressBar").style.width=((i+1)*20)+"%";
+ $("backBtn").classList.toggle("hidden",i===0);
+ $("nextBtn").classList.toggle("hidden",i===4);
+ $("submitBtn").classList.toggle("hidden",i!==4);
+ if(i===4)buildReview();
+}
+function hasSuspiciousText(value){
+ const letters=(value.match(/[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі]/g)||[]).join("");
+ if(letters.length<3 || /(.)\1{2,}/i.test(letters)) return true;
+ if(/[бвгджзйклмнпрстфхцчшщқңһ]{5,}/i.test(letters)) return true;
+ const hasVowel=/[аеёиоуыэюяәіөүұaeiouy]/i.test(letters);
+ const shortAcronym=letters.length<=5 && letters===letters.toUpperCase();
+ return !hasVowel && !shortAcronym;
+}
+function validPersonField(id,errorId){
+ const v=$(id).value.trim();
+ const letters=v.match(/[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі]/g)||[];
+ const allowed=/^[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі\s'-]+$/;
+ if(!allowed.test(v)||letters.length<2||hasSuspiciousText(v)){
+  $(errorId).textContent=t(errorId==="nameError"?"nameError":"surnameError");return false;
+ }
+ return true;
+}
+function validName(){
+ const firstOk=validPersonField("name","nameError");
+ const surnameOk=validPersonField("surname","surnameError");
+ return firstOk&&surnameOk;
+}
+function validProject(){
+ const v=$("project").value.trim();
+ if(!v) return true;
+ const allowed=/^[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі\s.'&-]+$/;
+ const letters=(v.match(/[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі]/g)||[]).join("");
+ if(!allowed.test(v)||letters.length<3||hasSuspiciousText(v)){
+  $("projectError").textContent=t("projectError");return false;
+ }
+ return true;
+}
+function phoneDigits(){return $("contact").value.replace(/\D/g,"")}
+function validPhone(){
+ const d=phoneDigits();
+ // Both countries use +7; first national digit distinguishes the numbering plan.
+ const valid=d.length===11&&d[0]==="7"&&( $("country").value==="kz" ? /^[67]\d{9}$/.test(d.slice(1)) : /^[3489]\d{9}$/.test(d.slice(1)) );
+ if(!valid){$("phoneError").textContent=t("phoneError");return false}return true;
+}
+function validStep(){
+ clearErrors();
+ if(currentStep===0){const nameOk=validName();const projectOk=validProject();return nameOk&&projectOk;}
+ if(currentStep===1){
+  let ok=true;
+  if(!document.querySelector('input[name="service"]:checked')){$("serviceError").textContent=t("serviceError");ok=false}
+  if($("task").value.trim().length<10){$("taskError").textContent=t("taskError");ok=false}
+  return ok;
+ }
+ if(currentStep===3){
+  let ok=validPhone();
+  if(!$("consent").checked){$("consentError").textContent=t("consentError");ok=false}
+  return ok;
+ }return true;
+}
+$("nextBtn").onclick=()=>{if(validStep())showStep(currentStep+1)};
+$("backBtn").onclick=()=>{clearErrors();showStep(currentStep-1)};
+function updatePhoneHint(){
+ $("phoneHint").textContent=t($("country").value==="kz"?"phoneHintKz":"phoneHintRu");
+ $("contact").placeholder=$("country").value==="kz"?"+7 700 123 45 67":"+7 999 123 45 67";
+}
+$("country").onchange=()=>{updatePhoneHint();$("contact").value="";$("phoneError").textContent=""};
+$("contact").addEventListener("input",e=>{
+ let d=e.target.value.replace(/\D/g,"");
+ if(d.startsWith("8"))d="7"+d.slice(1);
+ if(!d.startsWith("7"))d="7"+d;
+ d=d.slice(0,11);
+ let out="+7";
+ if(d.length>1)out+=" "+d.slice(1,4);
+ if(d.length>4)out+=" "+d.slice(4,7);
+ if(d.length>7)out+=" "+d.slice(7,9);
+ if(d.length>9)out+=" "+d.slice(9,11);
+ e.target.value=out;
+});
+function getService(){const el=document.querySelector('input[name="service"]:checked');return el?el.value:""}
+function buildReview(){
+ const country=$("country").value==="kz"?"Казахстан":"Россия";
+ const lines=[
+ t("reviewName")+": "+$("name").value.trim()+" "+$("surname").value.trim(),
+ t("reviewProject")+": "+($("project").value.trim()||"—"),
+ t("reviewService")+": "+getService(),
+ t("reviewTask")+": "+$("task").value.trim(),
+ t("reviewDeadline")+": "+($("deadline").value||"—"),
+ t("reviewPhone")+": "+$("contact").value+" ("+country+")"
+ ];
+ $("review").textContent=lines.join("\n\n");
+}
+$("applicationForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(currentStep!==4)return;
+ const data={
+  name:$("name").value.trim()+" "+$("surname").value.trim(),
+  project:$("project").value.trim(),
+  service:getService(),
+  task:$("task").value.trim(),
+  deadline:$("deadline").value||"Не указан",
+  contact:$("contact").value.trim(),
+  country:$("country").value==="kz"?"Казахстан":"Россия",
+  language:lang
+ };
+ const btn=$("submitBtn");btn.disabled=true;btn.textContent=t("sending");
+ try{
+  const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok||result.success===false)throw new Error("submit failed");
+  $("formCard").classList.add("hidden");$("successCard").classList.remove("hidden");
+ }catch(err){
+  alert(t("failed"));btn.disabled=false;btn.textContent=t("send");
+ }
+});
+setLanguage("ru");updatePhoneHint();showStep(0);
+</script>
+</body>
+</html>
